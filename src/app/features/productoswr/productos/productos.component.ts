@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductoService } from 'src/app/core/service/producto.service';
@@ -18,7 +19,7 @@ export class ProductosComponent implements OnInit,AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private productoService: ProductoService) { }
+  constructor(private productoService: ProductoService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.cargarProductos()
@@ -42,5 +43,11 @@ export class ProductosComponent implements OnInit,AfterViewInit {
   console.log('idProducto', idProducto);
   this.productoService.eliminarProducto(idProducto);
   this.cargarProductos();
+
+  this._snackBar.open('El producto fue eliminado con exito','',{
+    duration:2000,
+    horizontalPosition:'left',
+    verticalPosition:'bottom'
+  })
   }
 }
