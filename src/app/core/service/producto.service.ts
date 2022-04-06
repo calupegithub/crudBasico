@@ -79,4 +79,8 @@ export class ProductoService {
     if (index < 0) return; // No encontró coincidencia
     this.listProductos.splice(index, 1);
   }
+
+  agregarProducto(producto: Producto){
+    this.listProductos.unshift(producto);
+  }
 }

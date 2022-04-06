@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //Modulos de material
 import { MatCardModule } from '@angular/material/card';
@@ -12,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule}  from '@angular/material/paginator';
 import { MatSortModule }  from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const material = [
   MatCardModule,
@@ -23,7 +26,10 @@ const material = [
   MatFormFieldModule,
   MatInputModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
+  MatSnackBarModule,
+  MatGridListModule,
+  ReactiveFormsModule
 ];
 
 @NgModule({

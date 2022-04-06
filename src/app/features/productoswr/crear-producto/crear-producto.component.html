@@ -1,0 +1,50 @@
+<div class="contenedor">
+  <mat-toolbar>
+    <span>Crear Productos</span>
+   </mat-toolbar>
+   <mat-card class="producto">
+
+    <form [formGroup]="form" (ngSubmit)="agregarProducto()">
+      <mat-grid-list cols="5" rowHeight="50px">
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field appearance="fill" class="ancho">
+            <mat-label>ID:</mat-label>
+            <input matInput autocomplete="off" formControlName="id">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="6" >
+          <img src="../../../../assets/producto1.jpg" class="img">
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1" >
+          <mat-form-field appearance="fill" class="ancho">
+            <mat-label>Nombre:</mat-label>
+            <input matInput autocomplete="off" formControlName="nombre">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1" >
+          <mat-form-field appearance="fill" class="ancho">
+            <mat-label>Descripsión:</mat-label>
+            <input matInput autocomplete="off" formControlName="descripcion">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field appearance="fill" class="ancho">
+            <mat-label>Precio:</mat-label>
+            <input matInput autocomplete="off" formControlName="valor">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field appearance="fill" class="ancho">
+            <mat-label>URL Imagen:</mat-label>
+            <input matInput autocomplete="off" formControlName="imagen">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <button mat-raised-button class="button" [routerLink]="['/productoswr']">Volver</button>
+          <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Aceptar</button>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </form>
+  </mat-card>
+  </div>
