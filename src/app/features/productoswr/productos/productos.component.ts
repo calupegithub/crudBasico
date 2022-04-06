@@ -28,6 +28,8 @@ export class ProductosComponent implements OnInit,AfterViewInit {
   cargarProductos(){
     this.listProductos = this.productoService.getProductos()
     this.dataSource = new MatTableDataSource(this.listProductos)
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngAfterViewInit() {
@@ -42,9 +44,14 @@ export class ProductosComponent implements OnInit,AfterViewInit {
   eliminarProducto(idProducto: number){
   console.log('idProducto', idProducto);
   this.productoService.eliminarProducto(idProducto);
-  this.cargarProductos();
+    const index = this.listProductos.findIndex((producto) => {
+      return producto.id === idProducto;
+    });
 
-  this._snackBar.open('El producto fue eliminado con exito','',{
+    this._snackBar.open(
+      `Se elimino el producto: ${this.listProductos[index].nombre}`,
+    //'Se elimino el producto: '+this.listProductos[index].descripcion,
+    '',{
     duration:2000,
     horizontalPosition:'left',
     verticalPosition:'bottom'

@@ -2,6 +2,10 @@
 <div class="contenedor">
 <mat-toolbar>
   <span>Productos</span>
+  <div class="espacios"></div>
+  <button mat-raised-button color="primary"
+  [routerLink]="['/productoswr/crear-producto']"
+  >Adicionar</button>
 </mat-toolbar>
 
 <div *ngIf="listProductos.length>0">
