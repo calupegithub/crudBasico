@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { CrearProductoComponent } from './crear-producto/crear-producto.component';
 
 
+
 @NgModule({
   declarations: [
     ProductosComponent,
