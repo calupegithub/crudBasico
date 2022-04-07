@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Producto } from 'src/app/core/models/producto.model';
@@ -18,7 +19,10 @@ export class ProductosComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private productoService: ProductoService) {}
+  constructor(
+    private productoService: ProductoService,
+    private sb: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.cargarProductos();
@@ -27,6 +31,8 @@ export class ProductosComponent implements OnInit, AfterViewInit {
   cargarProductos() {
     this.listProductos = this.productoService.getProductos();
     this.dataSource = new MatTableDataSource(this.listProductos);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngAfterViewInit() {
@@ -42,6 +48,19 @@ export class ProductosComponent implements OnInit, AfterViewInit {
   eliminarProducto(idProducto: number) {
     console.log('idProducto', idProducto);
     this.productoService.eliminarProducto(idProducto);
+    const index = this.listProductos.findIndex((producto) => {
+      return producto.id === idProducto;
+    });
+    this.sb.open(
+      //'Se eliminó el producto: ' + this.listProductos[index].nombre,
+      `Se eliminó el producto: ${this.listProductos[index].nombre}`,
+      '',
+      {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+      }
+    );
     this.cargarProductos();
   }
 }
