@@ -1,50 +1,60 @@
 <div class="contenedor">
   <mat-toolbar>
     <span>Productos</span>
+    <div class="espacios"></div>
+    <button mat-raised-button color="primary" [routerLink]="['/productosys/crear-producto']"
+    
+      >Adicionar</button>
   </mat-toolbar>
 
-  <mat-form-field appearance="standard">
-    <mat-label>Filtrar Productos</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input autocomplete="off" />
-  </mat-form-field>
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+  <div *ngIf="listProductos.length > 0">
+    <mat-form-field appearance="standard">
+      <mat-label>Filtrar Productos</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input autocomplete="off" />
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
 
-      <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-      </ng-container>
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="descripcion">
-        <th mat-header-cell *matHeaderCellDef> Descripcion</th>
-        <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
-      </ng-container>
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef> Descripcion</th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="valor">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> valor </th>
-        <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
-      </ng-container>
-      <ng-container matColumnDef="acciones">
-        <th mat-header-cell *matHeaderCellDef> Acciones </th>
-        <td mat-cell *matCellDef="let element">
-          <a class="cursor color_search" matTooltip="Ver Prodcuto">
-            <mat-icon>search</mat-icon>
-          </a>
-          <a class="cursor color_edit" matTooltip="Editar Prodcuto">
-            <mat-icon>edit</mat-icon>
-          </a>
-          <a (click)= "eliminarProducto(element.id)"  class="cursor color_delete" matTooltip="Eliminar Prodcuto">
-            <mat-icon>delete</mat-icon>
-          </a>
-        </td>
+        <ng-container matColumnDef="valor">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> valor </th>
+          <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+            <a class="cursor color_search" matTooltip="Ver Prodcuto">
+              <mat-icon>search</mat-icon>
+            </a>
+            <a class="cursor color_edit" matTooltip="Editar Prodcuto">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <a (click)="eliminarProducto(element.id)" class="cursor color_delete" matTooltip="Eliminar Prodcuto">
+              <mat-icon>delete</mat-icon>
+            </a>
+          </td>
 
-      </ng-container>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[3,5,10,20]" aria-label="Seleccione la cantidad de prodcutos por pagina">
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[3,5,10,20]" aria-label="Seleccione la cantidad de prodcutos por pagina">
 
-    </mat-paginator>
+      </mat-paginator>
+    </div>
   </div>
+  <div *ngIf="listProductos.length == 0">
+    <h3>No Hay Productos Para Mostrar</h3>
+  </div>
+
 </div>

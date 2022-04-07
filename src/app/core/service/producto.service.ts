@@ -73,9 +73,11 @@ export class ProductoService {
 
   eliminarProducto(idProducto: number) {
     const index = this.listProductos.findIndex((producto) => {
-      producto.id === idProducto;
+      return producto.id === idProducto;
     });
 
+
+    if (index < 0) return;
     this.listProductos.splice(index, 1);
   }
 }
