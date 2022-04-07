@@ -3,17 +3,50 @@
     <span>Crear Producto</span>
   </mat-toolbar>
   <mat-card class="producto">
-    Crear producto
+    <div class="titulo-crear_producto">Crear Producto</div>
 
-    <mat-grid-list cols="12" rowHeight="100px">
-      <mat-grid-tile
-        *ngFor="let tile of tiles"
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows"
-        [style.background]="tile.color"
-      >
-        {{ tile.text }}
-      </mat-grid-tile>
-    </mat-grid-list>
+    <form [formGroup]="formulario">
+      <mat-grid-list cols="8" rowHeight="100px">
+        <mat-grid-tile [colspan]="8" [rowspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput autocomplete="off" formControlName="nombre" />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="8" [rowspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Descripcion</mat-label>
+            <input matInput autocomplete="off" formControlName="descripcion" />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="8" [rowspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>valor</mat-label>
+            <input matInput autocomplete="off" formControlName="valor" />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="8" [rowspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Imagen</mat-label>
+            <input matInput autocomplete="off" formControlName="imagen" />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1"> </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <button (click)="regresar()" mat-raised-button>Regresar</button>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <button
+            (click)="guardarProducto()"
+            [disabled]="formulario.invalid"
+            mat-raised-button
+            color="primary"
+          >
+            Guardar
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1"> </mat-grid-tile>
+      </mat-grid-list>
+    </form>
   </mat-card>
 </div>

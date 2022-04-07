@@ -3,5 +3,14 @@
 }
 
 .producto {
+  width: 50%;
+  margin: 0 auto;
   margin-top: 12px;
+}
+
+.titulo-crear_producto {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Producto } from 'src/app/core/models/producto.model';
+import { ProductoService } from 'src/app/core/service/producto.service';
 
 @Component({
   selector: 'app-crear-producto',
@@ -6,15 +10,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crear-producto.component.css'],
 })
 export class CrearProductoComponent implements OnInit {
-  tiles: any = [
-    { text: 'One', cols: 8, rows: 1, color: 'lightblue' },
-    { text: 'Two', cols: 4, rows: 3, color: 'lightgreen' },
-    { text: 'Three', cols: 3, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 5, rows: 1, color: '#DDBDF1' },
-    { text: 'Five', cols: 5, rows: 1, color: '#DDBD00' },
-    { text: 'Six', cols: 5, rows: 1, color: '#DD0D00' },
-  ];
-  constructor() {}
+  formulario: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private productoService: ProductoService,
+    private router: Router
+  ) {
+    this.formulario = this.fb.group({
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      valor: ['', Validators.required],
+      imagen: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {}
+
+  guardarProducto() {
+    console.log(this.formulario);
+    const producto: Producto = {
+      id: 0,
+      nombre: this.formulario.value.nombre,
+      descripcion: this.formulario.value.descripcion,
+      valor: this.formulario.value.valor,
+      imagen: this.formulario.value.imagen,
+    };
+
+    this.productoService.adicionarProducto(producto);
+
+    this.router.navigate(['/productosclp']);
+  }
+
+  regresar() {
+    this.router.navigate(['/productosclp']);
+  }
 }

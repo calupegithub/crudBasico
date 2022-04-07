@@ -79,4 +79,11 @@ export class ProductoService {
     if (index < 0) return; // No encontró coincidencia
     this.listProductos.splice(index, 1);
   }
+
+  adicionarProducto(producto: Producto) {
+    const id = this.listProductos.length;
+    producto.id = id;
+
+    this.listProductos.unshift(producto);
+  }
 }
