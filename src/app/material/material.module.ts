@@ -11,9 +11,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule}  from '@angular/material/paginator';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatSortModule }  from '@angular/material/sort';
 import { MatSnackBarModule}  from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
 
 const material = [
   MatCardModule,
@@ -28,6 +30,8 @@ const material = [
   MatSortModule,
   MatSnackBarModule,
   MatGridListModule,
+  MatSelectModule,
+  ReactiveFormsModule,
 ];
 
 @NgModule({

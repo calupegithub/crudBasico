@@ -1,11 +1,21 @@
-.contenedor
-{
-  margin: 10px 100px;
-}
+.contenedor{
+  margin: 5px 100px;
+  }
 
-.producto{
-  margin-top: 12px ;
-}
+  .producto{
+    margin-top: 12px;
+  }
 
+  .ancho{
+    width: 90%;
+  }
 
+  .img{
+    height: 300px;
+    width: 600px;
+  }
+
+  .button{
+    margin-right: 20px;
+  }
 

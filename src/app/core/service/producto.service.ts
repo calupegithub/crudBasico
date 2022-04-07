@@ -75,9 +75,18 @@ export class ProductoService {
     const index = this.listProductos.findIndex((producto) => {
       return producto.id === idProducto;
     });
-
-
-    if (index < 0) return;
     this.listProductos.splice(index, 1);
   }
-}
+
+
+
+    crearProducto(producto: Producto) {
+      this.listProductos.unshift(producto);
+    }
+
+  }
+
+
+
+
+

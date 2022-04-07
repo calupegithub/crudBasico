@@ -19,6 +19,7 @@ export class ProductosComponent implements OnInit {
   dataSource!: MatTableDataSource<Producto>
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  private _snackBar: any;
   constructor(private productoService: ProductoService, private sb: MatSnackBar ) {}
 
   ngOnInit(): void {
@@ -59,7 +60,13 @@ export class ProductosComponent implements OnInit {
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
     });
-    this.cargarProductos();
+    this.cargarProductos()
+
+    this.sb.open("El producto fue agrgado con exito",'',{
+      duration:2000,
+      horizontalPosition:'center',
+      verticalPosition:'bottom'
+    })
 
 }
 }
